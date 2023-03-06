@@ -11,7 +11,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-image: linear-gradient(rgba(40, 169, 221, 0.8), rgba(114, 114, 117, 0.7));
+    background-image: linear-gradient(rgba(155, 207, 65, 0.8), rgba(89, 87, 99, 0.8));
 }
 
 body::-webkit-scrollbar:hover {
@@ -20,5 +20,5 @@ body::-webkit-scrollbar:hover {
 }
 body::-webkit-scrollbar-thumb:hover {
     border-radius: 10px;
-    background-image: linear-gradient(rgb(39, 186, 244), rgba(128, 128, 130, 0.5));
+    background-image: linear-gradient(rgb(155, 207, 65), rgba(128, 128, 130, 0.5));
 }

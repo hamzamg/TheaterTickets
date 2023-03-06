@@ -1,7 +1,7 @@
 <button
-    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition">
+    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition">
     <svg width="24px" height="24px" viewBox="0 0 1024 1024"
-        class="icon rounded-full hover:outline-none hover:border-gray-300 hover:ring-2 hover:ring-blue-500 hover:ring-offset-2"
+        class="icon rounded-full hover:outline-none hover:border-gray-300 hover:ring-2 hover:ring-green-500 hover:ring-offset-2"
         version="1.1" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M1023.944003 511.972002c0 282.792535-229.235464 512.027998-511.948003 512.027998C229.235464 1024 0 794.764536 0 511.972002 0 229.243463 229.235464 0.008 511.996 0.008 794.708539 0.008 1023.944003 229.243463 1023.944003 511.972002z"

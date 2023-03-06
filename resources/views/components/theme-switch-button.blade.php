@@ -1,6 +1,6 @@
 <!-- The only way to do great work is to love what you do. - Steve Jobs -->
-<button type="button" x-bind:class="darkMode ? 'bg-indigo-500' : 'bg-gray-200'" x-on:click="darkMode = !darkMode"
-    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:outline-none hover:border-gray-300 hover:ring-2 hover:ring-blue-500 hover:ring-offset-2"
+<button type="button" x-bind:class="darkMode ? 'bg-green-500' : 'bg-gray-200'" x-on:click="darkMode = !darkMode"
+    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 hover:outline-none hover:border-gray-300 hover:ring-2 hover:ring-green-500 hover:ring-offset-2"
     role="switch" aria-checked="false">
     <span class="sr-only">Dark mode toggle</span>
     @if (app()->getLocale() == 'ar')

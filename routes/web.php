@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
+// use App\Http\Livewire\Show;
 
+// Route::get('shows', Show::class)->name('shows');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01d09dff6c96a9f2e69b545199cd6362",
+    "content-hash": "c8d7115cda298fb3e120486e4f470082",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1084,6 +1084,63 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "imriteshhh/livecrud",
+            "version": "v2.3.1",
+            "dist": {
+                "type": "path",
+                "url": "../GitHub/livewire-crud",
+                "reference": "c6d455425189b38b01af5993eb3eee3231278548"
+            },
+            "require": {
+                "illuminate/support": "~7|~8|~9|~10"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~5|~6|~7|~8",
+                "phpunit/phpunit": "~9.0|~8|~10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Imritesh\\LiveCrud\\LiveCrudServiceProvider"
+                    ],
+                    "aliases": {
+                        "LiveCrud": "Imritesh\\LiveCrud\\Facades\\LiveCrud"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Imritesh\\LiveCrud\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Imritesh\\LiveCrud\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ritesh Singh",
+                    "email": "hello@imritesh.com",
+                    "homepage": "https://imritesh.com"
+                }
+            ],
+            "description": "Generate Basic Crud Operations With Livewire and Tailwind Css For Laravel",
+            "homepage": "https://github.com/riteshsingh1/livewire-crud",
+            "keywords": [
+                "Laravel",
+                "LiveCrud"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -10200,7 +10257,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "imriteshhh/livecrud": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

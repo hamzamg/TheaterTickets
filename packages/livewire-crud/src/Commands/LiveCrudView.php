@@ -70,14 +70,11 @@ class LiveCrudView extends GeneratorCommand
         $label = ucfirst(str_replace('-', ' ', Str::slug($name)));
         $message = '{{ $message }}';
         if (config('livecrud.template') == 'tailwind') {
-            return "<div><label class='block'><span class='text-gray-700 @error('{$name}') text-red-500  @enderror'>{$label}</span><input type='{$type}' class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('{$name}')  border-red-500 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' wire:model='{$name}'>@error('{$name}')<span class='text-red-500 text-sm'>{$message}</span>@enderror</label></div>";
+            return "<div><label class='block'><span class='text-gray-700 @error('{$name}') text-red-500  @enderror'>{$label}</span><input type='{$type}' class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('{$name}')  border-red-500 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' wire:model='{$name}'>@error('{$name}')<span class='text-sm text-red-500'>{$message}</span>@enderror</label></div>";
         }
         if (config('livecrud.template') == 'bootstrap') {
             return "<div class='form-group'><label for='{$name}'>{$label}</label><input type='{$type}' class='form-control @error('{$name}')  is-invalid @enderror' wire:model='{$name}'>@error('{$name}')<div class='invalid-feedback'>{$message}</div>@enderror</div>";
-
         }
-
-
     }
 
     public function getType($name)
@@ -99,24 +96,31 @@ class LiveCrudView extends GeneratorCommand
         $str = '';
         $c = 1;
         $str .= '@forelse($rows as $row)' . PHP_EOL;
-        $str .= '<tr>';
+        $str .= '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
+
         if (config('livecrud.template') == 'tailwind') {
             foreach ($columns as $column) {
                 if ($column != 'created_at' || $column != 'updated_at') {
                     if ($c == 1) {
-                        $str .= $this->getDynamicData(str_replace('-', ' ', Str::slug($column))) . PHP_EOL;
+                        $str .= $this->getDynamicData($column) . PHP_EOL;
+                        // $str .= $this->getDynamicData(str_replace('-', ' ', Str::slug($column))) . PHP_EOL;
                     } else {
-                        $str .= $this->getDynamicData(str_replace('-', ' ', Str::slug($column))) . PHP_EOL;
+                        $str .= $this->getDynamicData($column) . PHP_EOL;
+                        // $str .= $this->getDynamicData(str_replace('-', ' ', Str::slug($column))) . PHP_EOL;
                     }
                 }
                 $c++;
             }
-            $str .= '<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900" wire:click="edit({{ $row->id }})">{{ __("Edit") }}</a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900" wire:click="confirmDelete({{ $row->id }})">{{ __("Delete") }}</a>
-                            </td></tr>';
-            $str .= '@empty  <tr><td>No Records Found</td></tr>   @endforelse' . PHP_EOL;
-
+            $str .= '<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <a href="#"
+                                class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                wire:click="edit({{ $row->id }})">{{ __("Edit") }}</a>
+                            <a href="#"
+                                class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                wire:click="confirmDelete({{ $row->id }})">{{ __("Delete") }}</a>
+                        </td>
+                    </tr>';
+            $str .=  '@empty  <tr class="font-medium text-center"><td>{{ __("No Records Found") }}</td></tr>   @endforelse' . PHP_EOL;
         }
         if (config('livecrud.template') == 'bootstrap') {
             foreach ($columns as $column) {
@@ -130,18 +134,20 @@ class LiveCrudView extends GeneratorCommand
                 $c++;
             }
             $str .= '<td>
-                                <a href="#" class="text-primary" wire:click.prevent="edit({{ $row->id }})">
-<svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height: 20px;" viewBox="0 0 20 20" fill="currentColor">
-  <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-  <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-</svg>
-</a>
-                                <a href="#" class="text-danger" wire:click.prevent="confirmDelete({{ $row->id }})"> <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height: 20px;" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg></a>
-                            </td></tr>';
-            $str .= '@empty  <tr><td>No Records Found</td></tr>   @endforelse' . PHP_EOL;
-
+                        <a href="#" class="text-primary" wire:click.prevent="edit({{ $row->id }})">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height: 20px;" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-danger" wire:click.prevent="confirmDelete({{ $row->id }})">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height: 20px;" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>';
+            $str .= '@empty  <tr><td class="font-medium text-center">{{ __("No Records Found") }}</td></tr>   @endforelse' . PHP_EOL;
         }
         return $str;
     }
@@ -151,7 +157,7 @@ class LiveCrudView extends GeneratorCommand
         if (config('livecrud.template') == 'bootstrap') {
             return ' <td>{{ $row->' . $name . '}}</td>' . PHP_EOL;
         }
-        return ' <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $row->' . $name . '}}</td>' . PHP_EOL;
+        return ' <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $row->' . $name . '}}</td>' . PHP_EOL;
     }
 
     public function getHeadings(): string
@@ -178,11 +184,11 @@ class LiveCrudView extends GeneratorCommand
     public function getInput($name): string
     {
         if (config('livecrud.template') == 'bootstrap') {
-            return '<th>' . strtoupper($name) . '
+            return '<th>{{ __("' . strtoupper($name) . '") }}
                             </th>' . PHP_EOL;
         }
-        return '<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ' . strtoupper($name) . '
+        return '<th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+        {{ __("' . strtoupper($name) . '") }}
                             </th>' . PHP_EOL;
     }
 
@@ -208,5 +214,4 @@ class LiveCrudView extends GeneratorCommand
         }
         return base_path() . '/vendor/imritesh/livecrud/src/stubs/view.php.stub';
     }
-
 }

@@ -1,16 +1,23 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Livewire;
 
-{{ useclasses }}
+use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Article as Model;
 
-class {{ name }} extends Component
+
+class Article extends Component
 {
     use WithPagination;
 
     public $paginate = 10;
 
-    {{ properties }}
+    public $title;
+   public $body;
+   public $photo_path;
+   public $lang;
+
 
     public $mode = 'create';
 
@@ -22,7 +29,14 @@ class {{ name }} extends Component
 
     public $showConfirmDeletePopup = false;
 
-    {{ rules }}
+    protected $rules = [
+'title' => 'required',
+'body' => 'required',
+'photo_path' => 'required',
+'lang' => 'required',
+
+];
+
 
 
     public function updated($propertyName)
@@ -37,8 +51,8 @@ class {{ name }} extends Component
 
     public function render()
     {
-        {{ query }}
-        return view('livewire.{{ blade }}', [
+        $model = Model::where('title', 'like', '%'.$this->search.'%')->orWhere('body', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('lang', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
+        return view('livewire.article', [
             'rows'=> $model
         ]);
     }
@@ -58,7 +72,11 @@ class {{ name }} extends Component
         $this->primaryId = $primaryId;
         $model = Model::find($primaryId);
 
-        {{ setedibleval }}
+        $this->title= $model->title;
+$this->body= $model->body;
+$this->photo_path= $model->photo_path;
+$this->lang= $model->lang;
+
 
 
         $this->showForm = true;
@@ -75,7 +93,11 @@ class {{ name }} extends Component
 
           $model = new Model();
 
-          {{ codeTosave }}
+             $model->title= $this->title;
+$model->body= $this->body;
+$model->photo_path= $this->photo_path;
+$model->lang= $this->lang;
+ $model->save();
 
           $this->resetForm();
           session()->flash('message', 'Record Saved Successfully');
@@ -84,7 +106,11 @@ class {{ name }} extends Component
 
     public function resetForm()
     {
-        {{ reset }}
+        $this->title= "";
+$this->body= "";
+$this->photo_path= "";
+$this->lang= "";
+
     }
 
 
@@ -94,7 +120,11 @@ class {{ name }} extends Component
 
           $model = Model::find($this->primaryId);
 
-          {{ codeTosave }}
+             $model->title= $this->title;
+$model->body= $this->body;
+$model->photo_path= $this->photo_path;
+$model->lang= $this->lang;
+ $model->save();
 
           $this->resetForm();
 

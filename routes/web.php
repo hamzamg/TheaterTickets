@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 // use App\Http\Livewire\Show;
 
-// Route::get('shows', Show::class)->name('shows');
+use App\Http\Livewire\Article;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,11 @@ use App\Http\Controllers\LanguageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Route::get('shows', Show::class)->name('shows');
+
+ Route::get('articles', Article::class)->name('articles');
+
 
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 

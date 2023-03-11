@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Arabic' => 'Arabe',
     'French' => 'Français',
@@ -7,5 +9,7 @@ return [
     'Show' => 'Afficher',
     'Edit' => 'Modifier',
     'Delete' => 'Supprimer',
-    'AddNewUser' => 'Ajouter un nouvel utilisateur'
+    'No Records Found' => 'Ne pas records',
+    'AddNewUser' => 'Ajouter un nouvel utilisateur',
+    'Articles' => 'Articles'
 ];

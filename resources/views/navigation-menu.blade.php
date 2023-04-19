@@ -2,30 +2,32 @@
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex space-x-8">
+            <div class="flex">
                 <!-- Logo -->
-                <div class="flex items-center shrink-0">
+                <div class="flex items-center mx-4">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block w-auto h-9" />
+                        <x-application-mark class="w-auto mx-2" />
                     </a>
+                    <x-application-mark-text class="w-auto mx-2" />
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                <div class="items-center hidden w-auto space-x-5 sm:-my-px sm:mx-10 sm:flex">
+                    <div class="hidden w-0 h-0"></div>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
                         {{ __('messages.Articles') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('shows') }}" :active="request()->routeIs('shows')">
+                        {{ __('messages.Shows') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
+                        {{ __('messages.Clients') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('test') }}" :active="request()->routeIs('test')">
+                        {{ __('messages.Test Gui') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -141,7 +143,7 @@
                 </div>
 
                 <!-- langages Dropdown -->
-                <div class="relative ml-3 ">
+                <div class="relative content-start ml-3 ">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <x-langage-switch-button />
@@ -150,15 +152,15 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Change languages') }}
+                                {{ __('messages.Languages') }}
                             </div>
                             @foreach (Config::get('languages') as $lang => $language)
                                 @if ($lang != App::getLocale())
-                                    <x-responsive-nav-link href="{{ route('lang.switch', $lang) }}" class="space-x-4">
+                                    <x-dropdown-link href="{{ route('lang.switch', $lang) }}" class="space-x-4">
                                         <span class="fi fi-{{ $language['flag-icon'] }}"></span>
                                         {{-- <span>{{ $language['display'] }}</span> --}}
                                         <span>{{ __('messages.' . $language['display'] . '') }}</span>
-                                    </x-responsive-nav-link>
+                                    </x-dropdown-link>
                                 @endif
                             @endforeach
                         </x-slot>

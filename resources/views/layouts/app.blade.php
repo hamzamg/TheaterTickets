@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -19,34 +19,31 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased dark:bg-slate-500" x-data="{ darkMode: false }" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    localStorage.setItem('darkMode', JSON.stringify(true));
-}
-darkMode = JSON.parse(localStorage.getItem('darkMode'));
+<body class="font-sans antialiased dark:bg-slate-500" x-data="{ darkMode: false }" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) { localStorage.setItem('darkMode', JSON.stringify(true)); } darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" x-cloak>
     <x-banner />
-    <div x-bind:class="{ 'dark': darkMode === true }" class="min-h-screen ">
-
+    <div x-bind:class="{ 'dark': darkMode === true }">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header class="bg-white shadow dark:bg-gray-800">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
         @endif
 
         <!-- Page Content -->
-        <main class="min-h-screen bg-gray-100  dark:bg-slate-700">
+        <main class="min-h-screen bg-gray-100 dark:bg-slate-700">
             {{ $slot }}
         </main>
     </div>
 
     @stack('modals')
-
+    {{-- @livewire('notifications') --}}
     @livewireScripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 
 </html>

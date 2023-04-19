@@ -11,5 +11,11 @@ return [
     'Delete' => 'Supprimer',
     'No Records Found' => 'Ne pas records',
     'AddNewUser' => 'Ajouter un nouvel utilisateur',
-    'Articles' => 'Articles'
+    'Articles' => 'Articles',
+    'Shows' => 'Shows',
+    'Clients' => 'Clients',
+    'Tickets' => 'Tickets',
+    'Test Gui' => 'Test Gui',
+    'Num_max' => 'Total',
+    'Languages' => 'Languages'
 ];

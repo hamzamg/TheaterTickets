@@ -28,7 +28,7 @@
                                 <button type="submit"
                                     class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25"
                                     wire:click="create">
-                                    {{ __('Add New') }} Article
+                                    {{ __('Add New') }} Show
                                 </button>
                             </div>
                         </div>
@@ -39,20 +39,25 @@
 
         <div class="flex flex-col w-full">
             <div class="inline-block min-w-full py-2 align-middle sm:-mx-6 lg:-mx-8">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-300">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300">
+                <div class="relative overflow-hidden overflow-x-auto border-b shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">N:</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('TITLE') }}
+                                    {{ __('NAME') }}
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('BODY') }}
+                                    {{ __('TYPE') }}
+                                </th>
+
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                                    {{ __('DESCRIPTION') }}
                                 </th>
 
                                 <th scope="col"
@@ -62,9 +67,8 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('LANG') }}
+                                    {{ __('ACTIVE') }}
                                 </th>
-
 
 
                                 <th scope="col" class="relative px-6 py-3">
@@ -72,32 +76,45 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tbody class="bg-white divide-y divide-gray-200 text-start">
                             @forelse($rows as $key => $row)
                                 <tr
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
                                         {{ ++$key }}</td>
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->title }}</td>
+                                        {{ $row->name }}</td>
 
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->body }}</td>
+                                        {{ $row->type }}</td>
 
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
+                                        {{ $row->description }}</td>
 
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
                                         <img class="w-24 rounded-md" src=" {{ asset($row->photo_path) }}"
                                             alt="{{ $row->name }}">
                                     </td>
+                                    @if ($row->active == 0)
+                                        <td
+                                            class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white text-center">
+                                            إنتهى
+                                        </td>
+                                    @else
+                                        <td
+                                            class="px-6 py-4 font-medium text-green-900 whitespace-nowrap dark:text-white text-center">
 
-                                    <td
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->lang }}</td>
+                                            مفعل
+                                        </td>
+                                    @endif
 
-                                    <td class="px-6 py-4 text-sm font-medium text-end">
+
+                                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                         <a href="#"
                                             class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
                                             wire:click="edit({{ $row->id }})">{{ __('Edit') }}</a>
@@ -155,28 +172,39 @@
 
                             <div class="content-start w-full mt-3 text-start sm:mt-0 sm:ml-4">
 
-                                <div class="mt-2">
-                                    <div><label class=''><span
-                                                class='text-gray-700 @error('title') text-red-500  @enderror'>Title</span><input
+                                <div class="mt-2 space-y-4">
+                                    <div><label class='block'><span
+                                                class='text-gray-700 @error('name') text-red-500  @enderror'>Name</span><input
                                                 type='text'
-                                                class='mt-1  w-full rounded-md border-gray-300 shadow-sm @error('title')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='title'>
-                                            @error('title')
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('name')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='name'>
+                                            @error('name')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
                                     <div><label class='block'><span
-                                                class='text-gray-700 @error('body') text-red-500  @enderror'>Body</span><input
+                                                class='text-gray-700 @error('type') text-red-500  @enderror'>Type</span><input
                                                 type='text'
-                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('body')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='body'>
-                                            @error('body')
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('type')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='type'>
+                                            @error('type')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
                                     <div><label class='block'><span
+                                                class='text-gray-700 @error('description') text-red-500  @enderror'>Description</span><input
+                                                type='text'
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('description')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='description'>
+                                            @error('description')
+                                                <span class='text-sm text-red-500'>{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class='block'><span
                                                 class='text-gray-700 @error('photo_path') text-red-500  @enderror'>Photo
                                                 path</span><input type='text'
                                                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('photo_path')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
@@ -186,35 +214,39 @@
                                             @enderror
                                         </label>
                                     </div>
-                                    <div><label class='block'><span
-                                                class='text-gray-700 @error('lang') text-red-500  @enderror'>Lang</span><input
-                                                type='text'
-                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('lang')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='lang'>
-                                            @error('lang')
+                                    <div>
+                                        <label class='relative inline-flex items-center cursor-pointer'>
+                                            <span
+                                                class='text-gray-700 @error('active') text-red-500  @enderror'>Active</span>
+                                            <div
+                                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                            </div>
+                                            <input type='checkbox'
+                                                class='sr-only peer mt-1 block rounded-md border-gray-300 shadow-sm @error('active')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='active'>
+                                            @error('active')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
-                                        </label></div>
-
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button
-                            @if ($mode == 'create') wire:click="store()" @else wire:click="update()" @endif
-                            type="button"
-                            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                            {{ $mode == 'create' ? 'Save Record' : 'Update Record' }}
-                        </button>
-                        <button wire:click="$set('showForm', false)" type="button"
-                            class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                            Cancel
-                        </button>
+                        <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button
+                                @if ($mode == 'create') wire:click="store()" @else wire:click="update()" @endif
+                                type="button"
+                                class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                {{ $mode == 'create' ? 'Save Record' : 'Update Record' }}
+                            </button>
+                            <button wire:click="$set('showForm', false)" type="button"
+                                class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                Cancel
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     @endif
     {{-- /create /edit form --}}
 

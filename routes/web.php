@@ -5,6 +5,10 @@ use App\Http\Controllers\LanguageController;
 // use App\Http\Livewire\Show;
 
 use App\Http\Livewire\Article;
+use App\Http\Livewire\Show;
+use App\Http\Livewire\Clients;
+use App\Http\Livewire\TeatherPlaces;
+// use App\Http\Livewire\ClientComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +23,11 @@ use App\Http\Livewire\Article;
 
 // Route::get('shows', Show::class)->name('shows');
 
- Route::get('articles', Article::class)->name('articles');
+Route::get('articles', Article::class)->name('articles');
+Route::get('shows', Show::class)->name('shows');
+Route::get('clients', Clients::class)->name('clients');
+Route::get('test', TeatherPlaces::class)->name('test');
+// Route::get('clients', ClientComponent::class)->name('clients');
 
 
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');

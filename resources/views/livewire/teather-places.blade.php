@@ -16,7 +16,7 @@
             </div>
         @endif
     </div>
-    <div class="grid grid-cols-{{ $max_num_col > 8 ? 8 : $max_num_col }} auto-rows-max gap-4 p-6 items-center">
+    <div class="grid grid-cols-{{ $max_num_col > 8 ? 8 : $max_num_col }}  gap-4 p-6 items-center">
         @foreach ($places as $place)
             <div wire:key="{{ $place['id'] }}" wire:click="selectPlace({{ $place['id'] }})" id="{{ $place['id'] }}"
                 class="p-4 h-28 rounded-md shadow-md outline-dotted outline-offset-1 outline-1 hover:ring hover:ring-offset-4

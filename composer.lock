@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64e55f1f7f6c23c0f967de6138bc8c70",
+    "content-hash": "67a7cad4e3d3b98e45510718842ff2e3",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3102,16 +3102,16 @@
         },
         {
             "name": "psr/http-message",
-            "version": "1.1",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
-                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba"
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
-                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
                 "shasum": ""
             },
             "require": {
@@ -3120,7 +3120,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -3135,7 +3135,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for HTTP messages",
@@ -3149,9 +3149,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-message/tree/1.1"
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "time": "2023-04-04T09:50:52+00:00"
+            "time": "2023-04-04T09:54:51+00:00"
         },
         {
             "name": "psr/log",
@@ -6234,21 +6234,21 @@
         },
         {
             "name": "dragon-code/contracts",
-            "version": "v2.19.0",
+            "version": "v2.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheDragonCode/contracts.git",
-                "reference": "b50ceb575da285c68615bf759d2bb3288aaa4b25"
+                "reference": "644ac91d9df96ebec3a46c0d2cc8ff51a83cbfad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheDragonCode/contracts/zipball/b50ceb575da285c68615bf759d2bb3288aaa4b25",
-                "reference": "b50ceb575da285c68615bf759d2bb3288aaa4b25",
+                "url": "https://api.github.com/repos/TheDragonCode/contracts/zipball/644ac91d9df96ebec3a46c0d2cc8ff51a83cbfad",
+                "reference": "644ac91d9df96ebec3a46c0d2cc8ff51a83cbfad",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5 || ^8.0",
-                "psr/http-message": "^1.0.1",
+                "psr/http-message": "^1.0.1 || ^2.0",
                 "symfony/http-kernel": "^4.0 || ^5.0 || ^6.0",
                 "symfony/polyfill-php80": "^1.23"
             },
@@ -6256,7 +6256,7 @@
                 "andrey-helldar/contracts": "*"
             },
             "require-dev": {
-                "illuminate/database": "^8.0",
+                "illuminate/database": "^10.0",
                 "phpdocumentor/reflection-docblock": "^5.0"
             },
             "type": "library",
@@ -6302,7 +6302,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2022-10-10T22:02:52+00:00"
+            "time": "2023-04-19T08:23:59+00:00"
         },
         {
             "name": "dragon-code/pretty-array",
@@ -6386,27 +6386,27 @@
         },
         {
             "name": "dragon-code/support",
-            "version": "v6.11.1",
+            "version": "v6.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheDragonCode/support.git",
-                "reference": "0560de8ae9b2641a1c8f27ebc1d602ea425153c3"
+                "reference": "81b4432f35ee5d1d7a310669ccc698d78b3e83a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheDragonCode/support/zipball/0560de8ae9b2641a1c8f27ebc1d602ea425153c3",
-                "reference": "0560de8ae9b2641a1c8f27ebc1d602ea425153c3",
+                "url": "https://api.github.com/repos/TheDragonCode/support/zipball/81b4432f35ee5d1d7a310669ccc698d78b3e83a6",
+                "reference": "81b4432f35ee5d1d7a310669ccc698d78b3e83a6",
                 "shasum": ""
             },
             "require": {
-                "dragon-code/contracts": "^2.18",
+                "dragon-code/contracts": "^2.19.1",
                 "ext-bcmath": "*",
                 "ext-ctype": "*",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "php": "^8.0",
-                "psr/http-message": "^1.0.1",
+                "psr/http-message": "^1.0.1 || ^2.0",
                 "symfony/polyfill-php81": "^1.25",
                 "voku/portable-ascii": "^1.4.8 || ^2.0.1"
             },
@@ -6485,7 +6485,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2023-04-01T12:41:34+00:00"
+            "time": "2023-04-19T08:29:55+00:00"
         },
         {
             "name": "fakerphp/faker",
@@ -7553,6 +7553,84 @@
                 }
             ],
             "time": "2023-04-14T10:39:16+00:00"
+        },
+        {
+            "name": "opcodesio/log-viewer",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opcodesio/log-viewer.git",
+                "reference": "caddf3336e4a3c23e655e0c1a11b2ae8e6ab4c7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/caddf3336e4a3c23e655e0c1a11b2ae8e6ab4c7d",
+                "reference": "caddf3336e4a3c23e655e0c1a11b2ae8e6ab4c7d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "conflict": {
+                "arcanedev/log-viewer": "^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.2",
+                "itsgoingd/clockwork": "^5.1",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^7.6|^8.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpunit/phpunit": "^9.5",
+                "spatie/test-time": "^1.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Required for multi-host support. ^7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Opcodes\\LogViewer\\LogViewerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LogViewer": "Opcodes\\LogViewer\\Facades\\LogViewer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opcodes\\LogViewer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arunas Skirius",
+                    "email": "arukomp@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Fast and easy-to-use log viewer for your Laravel application",
+            "homepage": "https://github.com/opcodesio/log-viewer",
+            "keywords": [
+                "arukompas",
+                "better-log-viewer",
+                "laravel",
+                "log viewer",
+                "logs",
+                "opcodesio"
+            ],
+            "support": {
+                "issues": "https://github.com/opcodesio/log-viewer/issues",
+                "source": "https://github.com/opcodesio/log-viewer/tree/v2.4.1"
+            },
+            "time": "2023-04-05T05:44:00+00:00"
         },
         {
             "name": "orchestra/testbench",
@@ -10201,27 +10279,27 @@
         },
         {
             "name": "zbateson/stream-decorators",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zbateson/stream-decorators.git",
-                "reference": "7466ff45d249c86b96267a83cdae68365ae1787e"
+                "reference": "712b9e7d25dc665a6c64bdba65929bbb6f0932aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/7466ff45d249c86b96267a83cdae68365ae1787e",
-                "reference": "7466ff45d249c86b96267a83cdae68365ae1787e",
+                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/712b9e7d25dc665a6c64bdba65929bbb6f0932aa",
+                "reference": "712b9e7d25dc665a6c64bdba65929bbb6f0932aa",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/psr7": "^1.9 | ^2.0",
-                "php": ">=7.1",
+                "php": ">=7.2",
                 "zbateson/mb-wrapper": "^1.0.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "*",
                 "phpstan/phpstan": "*",
-                "phpunit/phpunit": "<=9.0"
+                "phpunit/phpunit": "<10.0"
             },
             "type": "library",
             "autoload": {
@@ -10252,7 +10330,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zbateson/stream-decorators/issues",
-                "source": "https://github.com/zbateson/stream-decorators/tree/1.1.0"
+                "source": "https://github.com/zbateson/stream-decorators/tree/1.2.0"
             },
             "funding": [
                 {
@@ -10260,7 +10338,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-11T23:22:44+00:00"
+            "time": "2023-04-19T16:56:59+00:00"
         }
     ],
     "aliases": [],

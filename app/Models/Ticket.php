@@ -11,7 +11,7 @@ class Ticket extends Model
 
     protected $fillable=['date_shows','time_shows','nomber_ticket','rest_ticket','price','code_ticket','type','show_id'];
 
-    // public function show()
+    // public function shows()
     // {
     //     return $this->hasMany(Show::class);
     // }

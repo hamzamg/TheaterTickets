@@ -17,10 +17,11 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name', 40);
-            $table->string('type');
+            $table->string('type',100);
             $table->Text('description');
             $table->string('photo_path');
             $table->boolean('active');
+            $table->bigInteger('teather_id')->unsigned();
             $table->timestamps();
         });
     }

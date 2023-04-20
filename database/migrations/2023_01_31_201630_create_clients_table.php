@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('card_id', 18);
             $table->string('phone', 10);
             $table->string('pay_method', 20);
-            //$table->bigInteger('baytickets_id')->unsigned();
-            //$table->bigInteger('ticket_id')->unsigned();
+            $table->bigInteger('baytickets_id')->unsigned();
+            $table->bigInteger('ticket_id')->unsigned();
             $table->timestamps();
         });
     //     Schema::table('clients', function (Blueprint $table) {

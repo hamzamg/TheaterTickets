@@ -70,10 +70,10 @@ class LiveCrudView extends GeneratorCommand
         $label = ucfirst(str_replace('-', ' ', Str::slug($name)));
         $message = '{{ $message }}';
         if (config('livecrud.template') == 'tailwind') {
-            return "<div><label class='block'><span class='text-gray-700 @error('{$name}') text-red-500  @enderror'>{$label}</span><input type='{$type}' class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('{$name}')  border-red-500 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' wire:model='{$name}'>@error('{$name}')<span class='text-sm text-red-500'>{$message}</span>@enderror</label></div>";
+            return "<div><label class='block'><span class='text-gray-700 @error('{$name}') text-red-500  @enderror'>{$label}</span><input type='{$type}' class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('{$name}')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50' wire:model='{$name}'>@error('{$name}')<span class='text-sm text-red-500'>{$message}</span>@enderror</label></div>" . PHP_EOL;
         }
         if (config('livecrud.template') == 'bootstrap') {
-            return "<div class='form-group'><label for='{$name}'>{$label}</label><input type='{$type}' class='form-control @error('{$name}')  is-invalid @enderror' wire:model='{$name}'>@error('{$name}')<div class='invalid-feedback'>{$message}</div>@enderror</div>";
+            return "<div class='form-group'><label for='{$name}'>{$label}</label><input type='{$type}' class='form-control @error('{$name}')  is-invalid @enderror' wire:model='{$name}'>@error('{$name}')<div class='invalid-feedback'>{$message}</div>@enderror</div>" . PHP_EOL;
         }
     }
 
@@ -95,8 +95,13 @@ class LiveCrudView extends GeneratorCommand
         $columns = $model->getFillable();
         $str = '';
         $c = 1;
-        $str .= '@forelse($rows as $row)' . PHP_EOL;
-        $str .= '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
+        $str .= '@forelse($rows as $key => $row)' . PHP_EOL;
+        $str .= '<tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                    {{ ++$key }}</td>
+        ';
 
         if (config('livecrud.template') == 'tailwind') {
             foreach ($columns as $column) {
@@ -111,7 +116,7 @@ class LiveCrudView extends GeneratorCommand
                 }
                 $c++;
             }
-            $str .= '<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            $str .= '<td class="px-6 py-4 text-sm font-medium text-end">
                             <a href="#"
                                 class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
                                 wire:click="edit({{ $row->id }})">{{ __("Edit") }}</a>
@@ -157,7 +162,7 @@ class LiveCrudView extends GeneratorCommand
         if (config('livecrud.template') == 'bootstrap') {
             return ' <td>{{ $row->' . $name . '}}</td>' . PHP_EOL;
         }
-        return ' <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $row->' . $name . '}}</td>' . PHP_EOL;
+        return ' <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">{{ $row->' . $name . '}}</td>' . PHP_EOL;
     }
 
     public function getHeadings(): string
@@ -166,7 +171,7 @@ class LiveCrudView extends GeneratorCommand
         $model = new $class;
         $columns = $model->getFillable();
         $c = 1;
-        $str = '';
+        $str = '<th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">N:</th>'. PHP_EOL;
         foreach ($columns as $column) {
             if ($column != 'created_at' || $column != 'updated_at') {
                 if ($c == 1) {
@@ -177,7 +182,9 @@ class LiveCrudView extends GeneratorCommand
             }
             $c++;
         }
-
+        $str .= '<th scope="col" class="relative px-6 py-3">
+                    <span class="sr-only">Actions</span>
+                </th>';
         return $str;
     }
 

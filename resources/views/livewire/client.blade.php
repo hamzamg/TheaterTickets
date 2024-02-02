@@ -24,13 +24,6 @@
                                     id="search" type="text" name="search" wire:model="search" required="required"
                                     autofocus="autofocus">
                             </div>
-                            <div>
-                                <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25"
-                                    wire:click="create">
-                                    {{ __('Add New') }} Article
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -39,72 +32,84 @@
 
         <div class="flex flex-col w-full">
             <div class="inline-block min-w-full py-2 align-middle sm:-mx-6 lg:-mx-8">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-300">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300">
+                <div class="relative overflow-hidden overflow-x-auto border-b shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">N:</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('TITLE') }}
+                                    {{ __('FIRSTNAME') }}
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('BODY') }}
+                                    {{ __('LASTNAME') }}
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('PHOTO PATH') }}
+                                    {{ __('SEX') }}
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
-                                    {{ __('LANG') }}
+                                    {{ __('AGE') }}
                                 </th>
 
-
-
-                                <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Actions</span>
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                                    {{ __('CARD ID') }}
                                 </th>
+
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                                    {{ __('PHONE') }}
+                                </th>
+
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                                    {{ __('PAY METHOD') }}
+                                </th>
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @forelse($rows as $key => $row)
                                 <tr
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
                                         {{ ++$key }}</td>
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->title }}</td>
+                                        {{ $row->firstname }}</td>
 
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->body }}</td>
+                                        {{ $row->lastname }}</td>
 
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-
-                                        <img class="w-24 rounded-md" src=" {{ asset($row->photo_path) }}"
-                                            alt="{{ $row->name }}">
-                                    </td>
+                                        {{ $row->sex }}</td>
 
                                     <td
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
-                                        {{ $row->lang }}</td>
+                                        {{ $row->age }}</td>
 
-                                    <td class="px-6 py-4 text-sm font-medium text-end">
-                                        <a href="#"
-                                            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                            wire:click="edit({{ $row->id }})">{{ __('Edit') }}</a>
-                                        <a href="#"
-                                            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                            wire:click="confirmDelete({{ $row->id }})">{{ __('Delete') }}</a>
-                                    </td>
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
+                                        {{ $row->card_id }}</td>
+
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
+                                        {{ $row->phone }}</td>
+
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-start">
+                                        {{ $row->pay_method }}</td>
+
                             </tr>@empty <tr class="font-medium text-center">
                                     <td>{{ __('No Records Found') }}</td>
                                 </tr>
@@ -156,42 +161,72 @@
                             <div class="content-start w-full mt-3 text-start sm:mt-0 sm:ml-4">
 
                                 <div class="mt-2">
-                                    <div><label class=''><span
-                                                class='text-gray-700 @error('title') text-red-500  @enderror'>Title</span><input
+                                    <div><label class='block'><span
+                                                class='text-gray-700 @error('firstname') text-red-500  @enderror'>Firstname</span><input
                                                 type='text'
-                                                class='mt-1  w-full rounded-md border-gray-300 shadow-sm @error('title')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='title'>
-                                            @error('title')
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('firstname')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='firstname'>
+                                            @error('firstname')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
                                     <div><label class='block'><span
-                                                class='text-gray-700 @error('body') text-red-500  @enderror'>Body</span><input
+                                                class='text-gray-700 @error('lastname') text-red-500  @enderror'>Lastname</span><input
                                                 type='text'
-                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('body')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='body'>
-                                            @error('body')
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('lastname')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='lastname'>
+                                            @error('lastname')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
                                     <div><label class='block'><span
-                                                class='text-gray-700 @error('photo_path') text-red-500  @enderror'>Photo
-                                                path</span><input type='text'
-                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('photo_path')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='photo_path'>
-                                            @error('photo_path')
+                                                class='text-gray-700 @error('sex') text-red-500  @enderror'>Sex</span><input
+                                                type='text'
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('sex')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='sex'>
+                                            @error('sex')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
                                     <div><label class='block'><span
-                                                class='text-gray-700 @error('lang') text-red-500  @enderror'>Lang</span><input
+                                                class='text-gray-700 @error('age') text-red-500  @enderror'>Age</span><input
                                                 type='text'
-                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('lang')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
-                                                wire:model='lang'>
-                                            @error('lang')
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('age')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='age'>
+                                            @error('age')
+                                                <span class='text-sm text-red-500'>{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div><label class='block'><span
+                                                class='text-gray-700 @error('card_id') text-red-500  @enderror'>Card
+                                                id</span><input type='text'
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('card_id')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='card_id'>
+                                            @error('card_id')
+                                                <span class='text-sm text-red-500'>{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div><label class='block'><span
+                                                class='text-gray-700 @error('phone') text-red-500  @enderror'>Phone</span><input
+                                                type='text'
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('phone')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='phone'>
+                                            @error('phone')
+                                                <span class='text-sm text-red-500'>{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div><label class='block'><span
+                                                class='text-gray-700 @error('pay_method') text-red-500  @enderror'>Pay
+                                                method</span><input type='text'
+                                                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm @error('pay_method')  border-red-500 @enderror focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50'
+                                                wire:model='pay_method'>
+                                            @error('pay_method')
                                                 <span class='text-sm text-red-500'>{{ $message }}</span>
                                             @enderror
                                         </label></div>

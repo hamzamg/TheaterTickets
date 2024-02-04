@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Show as Model;
+use App\Models\Article as Model;
 
 
-class Show extends Component
+class Article extends Component
 {
     use WithPagination;
 
     public $paginate = 10;
 
-    public $name;
-   public $type;
-   public $description;
+    public $title;
+   public $body;
    public $photo_path;
-   public $active;
+   public $lang;
 
 
     public $mode = 'create';
@@ -31,11 +30,10 @@ class Show extends Component
     public $showConfirmDeletePopup = false;
 
     protected $rules = [
-'name' => 'required',
-'type' => 'required',
-'description' => 'required',
+'title' => 'required',
+'body' => 'required',
 'photo_path' => 'required',
-'active' => 'required',
+'lang' => 'required',
 
 ];
 
@@ -53,8 +51,8 @@ class Show extends Component
 
     public function render()
     {
-        $model = Model::where('name', 'like', '%'.$this->search.'%')->orWhere('type', 'like', '%'.$this->search.'%')->orWhere('description', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('active', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
-        return view('livewire.show', [
+        $model = Model::where('title', 'like', '%'.$this->search.'%')->orWhere('body', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('lang', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
+        return view('livewire.article', [
             'rows'=> $model
         ]);
     }
@@ -74,11 +72,10 @@ class Show extends Component
         $this->primaryId = $primaryId;
         $model = Model::find($primaryId);
 
-        $this->name= $model->name;
-$this->type= $model->type;
-$this->description= $model->description;
+        $this->title= $model->title;
+$this->body= $model->body;
 $this->photo_path= $model->photo_path;
-$this->active= $model->active;
+$this->lang= $model->lang;
 
 
 
@@ -96,11 +93,10 @@ $this->active= $model->active;
 
           $model = new Model();
 
-             $model->name= $this->name;
-$model->type= $this->type;
-$model->description= $this->description;
+             $model->title= $this->title;
+$model->body= $this->body;
 $model->photo_path= $this->photo_path;
-$model->active= $this->active;
+$model->lang= $this->lang;
  $model->save();
 
           $this->resetForm();
@@ -110,11 +106,10 @@ $model->active= $this->active;
 
     public function resetForm()
     {
-        $this->name= "";
-$this->type= "";
-$this->description= "";
+        $this->title= "";
+$this->body= "";
 $this->photo_path= "";
-$this->active= "";
+$this->lang= "";
 
     }
 
@@ -125,11 +120,10 @@ $this->active= "";
 
           $model = Model::find($this->primaryId);
 
-             $model->name= $this->name;
-$model->type= $this->type;
-$model->description= $this->description;
+             $model->title= $this->title;
+$model->body= $this->body;
 $model->photo_path= $this->photo_path;
-$model->active= $this->active;
+$model->lang= $this->lang;
  $model->save();
 
           $this->resetForm();

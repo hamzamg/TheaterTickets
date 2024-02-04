@@ -1,22 +1,25 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Article as Model;
+use App\Models\Client as Model;
 
 
-class Article extends Component
+class Clients extends Component
 {
     use WithPagination;
 
     public $paginate = 10;
 
-    public $title;
-   public $body;
-   public $photo_path;
-   public $lang;
+    public $firstname;
+   public $lastname;
+   public $sex;
+   public $age;
+   public $card_id;
+   public $phone;
+   public $pay_method;
 
 
     public $mode = 'create';
@@ -30,10 +33,13 @@ class Article extends Component
     public $showConfirmDeletePopup = false;
 
     protected $rules = [
-'title' => 'required',
-'body' => 'required',
-'photo_path' => 'required',
-'lang' => 'required',
+'firstname' => 'required',
+'lastname' => 'required',
+'sex' => 'required',
+'age' => 'required',
+'card_id' => 'required',
+'phone' => 'required',
+'pay_method' => 'required',
 
 ];
 
@@ -51,8 +57,8 @@ class Article extends Component
 
     public function render()
     {
-        $model = Model::where('title', 'like', '%'.$this->search.'%')->orWhere('body', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('lang', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
-        return view('livewire.article', [
+        $model = Model::where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'.$this->search.'%')->orWhere('sex', 'like', '%'.$this->search.'%')->orWhere('age', 'like', '%'.$this->search.'%')->orWhere('card_id', 'like', '%'.$this->search.'%')->orWhere('phone', 'like', '%'.$this->search.'%')->orWhere('pay_method', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
+        return view('livewire.client', [
             'rows'=> $model
         ]);
     }
@@ -72,10 +78,13 @@ class Article extends Component
         $this->primaryId = $primaryId;
         $model = Model::find($primaryId);
 
-        $this->title= $model->title;
-$this->body= $model->body;
-$this->photo_path= $model->photo_path;
-$this->lang= $model->lang;
+        $this->firstname= $model->firstname;
+$this->lastname= $model->lastname;
+$this->sex= $model->sex;
+$this->age= $model->age;
+$this->card_id= $model->card_id;
+$this->phone= $model->phone;
+$this->pay_method= $model->pay_method;
 
 
 
@@ -93,10 +102,13 @@ $this->lang= $model->lang;
 
           $model = new Model();
 
-             $model->title= $this->title;
-$model->body= $this->body;
-$model->photo_path= $this->photo_path;
-$model->lang= $this->lang;
+             $model->firstname= $this->firstname;
+$model->lastname= $this->lastname;
+$model->sex= $this->sex;
+$model->age= $this->age;
+$model->card_id= $this->card_id;
+$model->phone= $this->phone;
+$model->pay_method= $this->pay_method;
  $model->save();
 
           $this->resetForm();
@@ -106,10 +118,13 @@ $model->lang= $this->lang;
 
     public function resetForm()
     {
-        $this->title= "";
-$this->body= "";
-$this->photo_path= "";
-$this->lang= "";
+        $this->firstname= "";
+$this->lastname= "";
+$this->sex= "";
+$this->age= "";
+$this->card_id= "";
+$this->phone= "";
+$this->pay_method= "";
 
     }
 
@@ -120,10 +135,13 @@ $this->lang= "";
 
           $model = Model::find($this->primaryId);
 
-             $model->title= $this->title;
-$model->body= $this->body;
-$model->photo_path= $this->photo_path;
-$model->lang= $this->lang;
+             $model->firstname= $this->firstname;
+$model->lastname= $this->lastname;
+$model->sex= $this->sex;
+$model->age= $this->age;
+$model->card_id= $this->card_id;
+$model->phone= $this->phone;
+$model->pay_method= $this->pay_method;
  $model->save();
 
           $this->resetForm();

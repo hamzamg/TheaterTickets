@@ -854,7 +854,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 
     </div>
 
-    <div id="indicators-carousel" class="relative" data-carousel="static">
+    {{-- <div id="indicators-carousel" class="relative mt-12 pt-12" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative h-56 m-16 overflow-hidden rounded-lg md:h-96">
             <!-- Item 1 -->
@@ -922,7 +922,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                 <span class="sr-only">Next</span>
             </span>
         </button>
-    </div>
+    </div> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>

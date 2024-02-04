@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Client as Model;
+use App\Models\Show as Model;
 
 
-class Clients extends Component
+class Show extends Component
 {
     use WithPagination;
 
     public $paginate = 10;
 
-    public $firstname;
-   public $lastname;
-   public $sex;
-   public $age;
-   public $card_id;
-   public $phone;
-   public $pay_method;
+    public $name;
+   public $type;
+   public $description;
+   public $photo_path;
+   public $active;
 
 
     public $mode = 'create';
@@ -33,13 +31,11 @@ class Clients extends Component
     public $showConfirmDeletePopup = false;
 
     protected $rules = [
-'firstname' => 'required',
-'lastname' => 'required',
-'sex' => 'required',
-'age' => 'required',
-'card_id' => 'required',
-'phone' => 'required',
-'pay_method' => 'required',
+'name' => 'required',
+'type' => 'required',
+'description' => 'required',
+'photo_path' => 'required',
+'active' => 'required',
 
 ];
 
@@ -57,8 +53,8 @@ class Clients extends Component
 
     public function render()
     {
-        $model = Model::where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'.$this->search.'%')->orWhere('sex', 'like', '%'.$this->search.'%')->orWhere('age', 'like', '%'.$this->search.'%')->orWhere('card_id', 'like', '%'.$this->search.'%')->orWhere('phone', 'like', '%'.$this->search.'%')->orWhere('pay_method', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
-        return view('livewire.client', [
+        $model = Model::where('name', 'like', '%'.$this->search.'%')->orWhere('type', 'like', '%'.$this->search.'%')->orWhere('description', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('active', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
+        return view('livewire.show', [
             'rows'=> $model
         ]);
     }
@@ -78,13 +74,11 @@ class Clients extends Component
         $this->primaryId = $primaryId;
         $model = Model::find($primaryId);
 
-        $this->firstname= $model->firstname;
-$this->lastname= $model->lastname;
-$this->sex= $model->sex;
-$this->age= $model->age;
-$this->card_id= $model->card_id;
-$this->phone= $model->phone;
-$this->pay_method= $model->pay_method;
+        $this->name= $model->name;
+$this->type= $model->type;
+$this->description= $model->description;
+$this->photo_path= $model->photo_path;
+$this->active= $model->active;
 
 
 
@@ -102,13 +96,11 @@ $this->pay_method= $model->pay_method;
 
           $model = new Model();
 
-             $model->firstname= $this->firstname;
-$model->lastname= $this->lastname;
-$model->sex= $this->sex;
-$model->age= $this->age;
-$model->card_id= $this->card_id;
-$model->phone= $this->phone;
-$model->pay_method= $this->pay_method;
+             $model->name= $this->name;
+$model->type= $this->type;
+$model->description= $this->description;
+$model->photo_path= $this->photo_path;
+$model->active= $this->active;
  $model->save();
 
           $this->resetForm();
@@ -118,13 +110,11 @@ $model->pay_method= $this->pay_method;
 
     public function resetForm()
     {
-        $this->firstname= "";
-$this->lastname= "";
-$this->sex= "";
-$this->age= "";
-$this->card_id= "";
-$this->phone= "";
-$this->pay_method= "";
+        $this->name= "";
+$this->type= "";
+$this->description= "";
+$this->photo_path= "";
+$this->active= "";
 
     }
 
@@ -135,13 +125,11 @@ $this->pay_method= "";
 
           $model = Model::find($this->primaryId);
 
-             $model->firstname= $this->firstname;
-$model->lastname= $this->lastname;
-$model->sex= $this->sex;
-$model->age= $this->age;
-$model->card_id= $this->card_id;
-$model->phone= $this->phone;
-$model->pay_method= $this->pay_method;
+             $model->name= $this->name;
+$model->type= $this->type;
+$model->description= $this->description;
+$model->photo_path= $this->photo_path;
+$model->active= $this->active;
  $model->save();
 
           $this->resetForm();

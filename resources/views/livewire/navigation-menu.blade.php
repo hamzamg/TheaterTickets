@@ -8,7 +8,7 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-mark class="w-auto mx-2" />
                     </a>
-                    {{-- <x-application-mark-text class="w-auto mx-2" /> --}}
+                    <x-application-mark-text class="w-auto mx-2" />
                 </div>
 
                 <!-- Navigation Links -->

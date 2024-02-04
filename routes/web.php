@@ -4,10 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 // use App\Http\Livewire\Show;
 
+<<<<<<< HEAD
 use App\Livewire\Article;
 use App\Livewire\Show;
 use App\Livewire\Clients;
 use App\Livewire\TeatherPlaces;
+=======
+use App\Http\Livewire\Article;
+use App\Http\Livewire\Show;
+use App\Http\Livewire\Clients;
+use App\Http\Livewire\TeatherPlaces;
+>>>>>>> 1741c742aaeac17f6443898e47bfa9262957cb9d
 // use App\Http\Livewire\ClientComponent;
 
 /*

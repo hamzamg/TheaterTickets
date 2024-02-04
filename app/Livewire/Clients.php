@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD:app/Livewire/Clients.php
 namespace App\Livewire;
-=======
-namespace App\Http\Livewire;
->>>>>>> 1741c742aaeac17f6443898e47bfa9262957cb9d:app/Http/Livewire/Clients.php
 
 use Livewire\Component;
 use Livewire\WithPagination;

@@ -2,13 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
-// use App\Http\Livewire\Show;
 
 use App\Livewire\Article;
 use App\Livewire\Show;
 use App\Livewire\Clients;
 use App\Livewire\TeatherPlaces;
-// use App\Http\Livewire\ClientComponent;
+use App\Livewire\ShowsType;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +20,11 @@ use App\Livewire\TeatherPlaces;
 |
 */
 
-// Route::get('shows', Show::class)->name('shows');
-
+Route::get('shows-types', ShowsType::class)->name('shows-types');
 Route::get('articles', Article::class)->name('articles');
 Route::get('shows', Show::class)->name('shows');
 Route::get('clients', Clients::class)->name('clients');
 Route::get('test', TeatherPlaces::class)->name('test');
-// Route::get('clients', ClientComponent::class)->name('clients');
-
 
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 

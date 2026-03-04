@@ -9,5 +9,10 @@ class ShowsType extends Model
 {
     use HasFactory;
 
-    protected $fillable=['type'];
+    protected $fillable=['type','slug','description','active'];
+
+    public function shows()
+    {
+        return $this->hasMany(Show::class, 'show_type_id');
+    }
 }

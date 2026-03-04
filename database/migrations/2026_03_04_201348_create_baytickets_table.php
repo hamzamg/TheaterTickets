@@ -6,20 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('baytickets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('show_id')->constrained('shows')->onDelete('cascade');
+            $table->foreignId('ticket_id')->constrained('tickets')->onDelete('cascade');
+            $table->string('qrcode', 120)->nullable();
+            $table->integer('quantity')->default(1);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('baytickets');

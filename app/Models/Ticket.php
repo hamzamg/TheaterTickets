@@ -20,4 +20,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(TicketsType::class, 'ticket_type_id');
     }
+
+    public function baytickets()
+    {
+        return $this->hasMany(Bayticket::class);
+    }
 }

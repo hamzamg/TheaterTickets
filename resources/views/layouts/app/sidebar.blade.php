@@ -16,6 +16,21 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                <flux:sidebar.group :heading="__('Theater Management')" class="grid">
+                    <flux:sidebar.item icon="film" :href="route('shows')" :current="request()->routeIs('shows')" wire:navigate>
+                        {{ __('Shows') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="ticket" :href="route('tickets')" :current="request()->routeIs('tickets')" wire:navigate>
+                        {{ __('Tickets') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="users" :href="route('clients')" :current="request()->routeIs('clients')" wire:navigate>
+                        {{ __('Clients') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="shopping-cart" :href="route('bookings')" :current="request()->routeIs('bookings')" wire:navigate>
+                        {{ __('Bookings') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
             </flux:sidebar.nav>
 
             <flux:spacer />

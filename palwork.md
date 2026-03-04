@@ -1,53 +1,307 @@
-# PALWork Plan — TheaterTickets
+# 🎭 TheaterTickets - Project Roadmap
 
-## Objective
-Build a complete theater ticket management system with Laravel 12, Livewire 3.5, PHP 8.5, and modern UI using shadcn-inspired design.
+> خطة عمل شاملة لنظام إدارة تذاكر المسرح
 
-## Technology Stack
-- **Laravel**: 12.x
-- **PHP**: 8.5
-- **Livewire**: 3.5
-- **Database**: SQLite (dev) / MySQL (prod)
-- **Frontend**: Tailwind CSS + shadcn-inspired components
-- **Build Tool**: Vite
+---
 
-## Modules
+## 🎯 الهدف
 
-### 1. Authentication
-- Laravel Breeze for simple auth
-- Admin user: hamzaAd / ad123456
+بناء نظام متكامل لإدارة تذاكر المسرح باستخدام أحدث التقنيات مع التركيز على:
+- ✅ تجربة مستخدم سلسة وحديثة
+- ✅ نظام صلاحيات مرن وقوي
+- ✅ أداء عالي وقابلية للتوسع
+- ✅ كود نظيف وقابل للصيانة
 
-### 2. Shows Management
-- CRUD operations
-- Fields: name, type, description, photo, active
-- Relations: ShowsType, Tickets
+---
 
-### 3. Tickets Management
-- CRUD operations
-- Fields: date, time, quantity, price, code, type
-- Relations: Show, TicketsType
+## 💻 التقنيات المستخدمة
 
-### 4. Clients Management
-- CRUD operations
-- Fields: firstname, lastname, sex, age, phone, payment method
+| التقنية | الإصدار | الغرض |
+|---------|---------|--------|
+| **Laravel** | 12.x | Framework أساسي |
+| **PHP** | 8.5 | لغة البرمجة |
+| **Livewire** | 3.5 | واجهات تفاعلية |
+| **Tailwind CSS** | 4.x | التصميم |
+| **Vite** | 5.x | Build tool |
+| **MySQL** | 8.0 | قاعدة البيانات |
+| **Spatie Permission** | 6.x | نظام الصلاحيات |
+| **Simple QR Code** | 4.x | توليد QR codes |
 
-### 5. Bookings (Baytickets)
-- QR code generation
-- Relations: Client, Show, Ticket
+---
 
-### 6. Theater Places (Seating)
-- Grid layout management
-- Reservation tracking
+## 📦 الوحدات الأساسية
 
-### 7. Articles (News)
-- News/announcements management
+### ✅ 1. نظام المصادقة (Authentication)
 
-### 8. Reference Data
-- ShowsType: Categories for shows
-- TicketsType: Categories for tickets with price modifiers
+**الحالة:** مكتمل ✅
 
-## Delivery Process
-- Commit after each module
-- Create PR for each milestone
-- Test routes before/after deployment
-- Update message.md continuously
+**المميزات:**
+- Laravel Breeze للتسجيل والدخول
+- مستخدم إداري افتراضي
+- إدارة الجلسات
+
+**البيانات:**
+```
+Email: admin@theater.local
+Password: ad123456
+Role: super-admin
+```
+
+---
+
+### ✅ 2. إدارة العروض (Shows Management)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `name` - اسم العرض
+- `type` - نوع العرض
+- `description` - الوصف
+- `photo_path` - صورة العرض
+- `active` - حالة التفعيل
+- `show_type_id` - نوع العرض (FK)
+
+**العلاقات:**
+- ينتمي إلى `ShowsType`
+- لديه عدة `Tickets`
+
+**الوظائف:**
+- ✅ إنشاء عرض جديد
+- ✅ تعديل العرض
+- ✅ حذف العرض
+- ✅ البحث والتصفية
+- ✅ رفع الصور
+
+---
+
+### ✅ 3. إدارة التذاكر (Tickets Management)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `date_shows` - تاريخ العرض
+- `time_shows` - وقت العرض
+- `nomber_ticket` - عدد التذاكر
+- `rest_ticket` - التذاكر المتبقية
+- `price` - السعر
+- `code_ticket` - رمز التذكرة
+- `type` - نوع التذكرة
+- `show_id` - العرض (FK)
+
+**العلاقات:**
+- ينتمي إلى `Show`
+- لديه عدة `Baytickets`
+
+**الوظائف:**
+- ✅ إنشاء دفعات تذاكر
+- ✅ تتبع التوفر
+- ✅ ربط بالعروض
+
+---
+
+### ✅ 4. إدارة العملاء (Clients Management)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `firstname` - الاسم الأول
+- `lastname` - اسم العائلة
+- `sex` - الجنس
+- `age` - العمر
+- `card_id` - رقم البطاقة
+- `phone` - رقم الهاتف
+- `pay_method` - طريقة الدفع
+
+**العلاقات:**
+- لديه عدة `Baytickets`
+
+**الوظائف:**
+- ✅ إدارة بيانات العملاء
+- ✅ تتبع الحجوزات
+
+---
+
+### ✅ 5. إدارة الحجوزات (Bookings Management)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `client_id` - العميل (FK)
+- `show_id` - العرض (FK)
+- `ticket_id` - التذكرة (FK)
+- `qrcode` - رمز QR
+- `quantity` - الكمية
+- `notes` - ملاحظات
+
+**العلاقات:**
+- ينتمي إلى `Client`
+- ينتمي إلى `Show`
+- ينتمي إلى `Ticket`
+
+**الوظائف:**
+- ✅ إنشاء حجز
+- ✅ توليد QR code تلقائي
+- ✅ تأكيد الحجز
+
+---
+
+### ✅ 6. إدارة أماكن الجلوس (TeatherPlaces)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `num_row` - رقم الصف
+- `num_col` - رقم المقعد
+- `name` - اسم المكان
+- `reservation` - حالة الحجز
+- `selected` - حالة التحديد
+
+**الوظائف:**
+- ✅ إدارة شبكة المقاعد
+- ✅ تتبع الحجوزات
+
+---
+
+### ✅ 7. إدارة المقالات (Articles)
+
+**الحالة:** مكتمل ✅
+
+**الحقول:**
+- `title` - العنوان
+- `body` - المحتوى
+- `photo_path` - الصورة
+- `lang` - اللغة
+
+**الوظائف:**
+- ✅ نشر الأخبار
+- ✅ إعلانات العروض
+
+---
+
+### ✅ 8. البيانات المرجعية (Reference Data)
+
+#### ShowsType
+**الحالة:** مكتمل ✅
+
+- أنواع العروض
+- ربط بالعروض
+
+#### TicketsType
+**الحالة:** مكتمل ✅
+
+- أنواع التذاكر
+- معدلات الأسعار
+
+---
+
+## 🔐 نظام الصلاحيات
+
+**الحالة:** مكتمل ✅
+
+### الأدوار:
+
+| الدور | الصلاحيات | الوصف |
+|-------|----------|--------|
+| **super-admin** | 26 صلاحية | صلاحيات كاملة |
+| **admin** | 21 صلاحية | إدارة كاملة |
+| **manager** | 18 صلاحية | إدارة العمليات |
+| **staff** | 11 صلاحية | العمليات الأساسية |
+| **user** | 3 صلاحيات | عرض وإنشاء حجوزات |
+
+### الصلاحيات المتاحة:
+
+**Shows:** `view`, `create`, `edit`, `delete`
+
+**Tickets:** `view`, `create`, `edit`, `delete`
+
+**Clients:** `view`, `create`, `edit`, `delete`
+
+**Bookings:** `view`, `create`, `edit`, `delete`
+
+**Articles:** `view`, `create`, `edit`, `delete`
+
+**Settings:** `view`, `edit`
+
+**Users:** `view`, `create`, `edit`, `delete`
+
+---
+
+## 📋 خطة التنفيذ
+
+### ✅ المرحلة 1: الأساس (مكتمل)
+- [x] إعداد المشروع
+- [x] إنشاء النماذج
+- [x] إعداد قاعدة البيانات
+- [x] إنشاء المستخدم الإداري
+
+### ✅ المرحلة 2: الواجهات (مكتمل)
+- [x] Livewire components
+- [x] CRUD لجميع الوحدات
+- [x] نظام QR codes
+- [x] تصميم UI
+
+### ✅ المرحلة 3: الأمان (مكتمل)
+- [x] نظام الصلاحيات
+- [x] تعيين الأدوار
+- [x] حماية المسارات
+
+### 🔄 المرحلة 4: التحسينات (جاري)
+- [ ] نظام الإشعارات
+- [ ] النشر الإنتاجي
+- [ ] اختبارات شاملة
+- [ ] توثيق API
+
+---
+
+## 🚀 خطوات النشر
+
+### 1. ما قبل النشر
+- [x] مراجعة الكود
+- [ ] اختبارات الأداء
+- [ ] فحص الأمان
+- [x] تحديث الـ README
+
+### 2. النشر
+- [ ] إعداد الخادم الإنتاجي
+- [ ] تهيئة قاعدة البيانات
+- [ ] إعداد SSL
+- [ ] مراقبة الأخطاء
+
+### 3. ما بعد النشر
+- [ ] مراقبة الأداء
+- [ ] جمع التغذية الراجعة
+- [ ] تحديثات مستمرة
+
+---
+
+## 📊 معايير الجودة
+
+### الكود:
+- ✅ PSR-12 coding standards
+- ✅ Type hints للدوال
+- ✅ Meaningful variable names
+
+### الأداء:
+- ✅ Database indexing
+- ✅ Eager loading للعلاقات
+- ✅ Optimized queries
+
+### الأمان:
+- ✅ Input validation
+- ✅ CSRF protection
+- ✅ XSS prevention
+- ✅ SQL injection protection
+
+---
+
+## 🔗 المصادر
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [Livewire Documentation](https://livewire.laravel.com)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Spatie Permission](https://spatie.be/docs/laravel-permission)
+
+---
+
+**📅 آخر تحديث:** 2026-03-04
+**👤 المسؤول:** Zo Computer (hemza.zo.computer)

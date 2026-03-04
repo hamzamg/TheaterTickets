@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Article as ArticleModel;
 
-class Articles extends Component
+class Article extends Component
 {
     use WithPagination;
 
@@ -18,13 +18,15 @@ class Articles extends Component
     public $articleId;
     public $title;
     public $body;
-    public $lang = 'en';
+    public $photo_path;
+    public $lang = 'ar';
     public $published = false;
 
     protected $rules = [
         'title' => 'required|string|max:255',
         'body' => 'required|string',
-        'lang' => 'required|in:en,ar,fr',
+        'photo_path' => 'nullable|string',
+        'lang' => 'required|in:ar,en,fr',
         'published' => 'boolean',
     ];
 
@@ -35,7 +37,7 @@ class Articles extends Component
             ->latest()
             ->paginate(10);
 
-        return view('livewire.articles', compact('articles'));
+        return view('livewire.article', compact('articles'));
     }
 
     public function create()
@@ -51,6 +53,7 @@ class Articles extends Component
         $this->articleId = $id;
         $this->title = $article->title;
         $this->body = $article->body;
+        $this->photo_path = $article->photo_path;
         $this->lang = $article->lang;
         $this->published = $article->published;
         
@@ -65,16 +68,17 @@ class Articles extends Component
         $data = [
             'title' => $this->title,
             'body' => $this->body,
+            'photo_path' => $this->photo_path,
             'lang' => $this->lang,
             'published' => $this->published,
         ];
 
         if ($this->editMode) {
             ArticleModel::where('id', $this->articleId)->update($data);
-            session()->flash('success', 'Article updated successfully.');
+            session()->flash('success', 'تم تحديث المقال بنجاح');
         } else {
             ArticleModel::create($data);
-            session()->flash('success', 'Article created successfully.');
+            session()->flash('success', 'تم إنشاء المقال بنجاح');
         }
 
         $this->showModal = false;
@@ -90,12 +94,12 @@ class Articles extends Component
     public function delete()
     {
         ArticleModel::destroy($this->articleId);
-        session()->flash('success', 'Article deleted successfully.');
+        session()->flash('success', 'تم حذف المقال بنجاح');
         $this->showDeleteModal = false;
     }
 
     private function resetForm()
     {
-        $this->reset(['articleId', 'title', 'body', 'lang', 'published']);
+        $this->reset(['articleId', 'title', 'body', 'photo_path', 'lang', 'published']);
     }
 }

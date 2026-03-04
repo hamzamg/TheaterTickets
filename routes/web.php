@@ -9,6 +9,7 @@ use App\Livewire\ShowsType;
 use App\Livewire\Tickets;
 use App\Livewire\TicketsType;
 use App\Livewire\Clients;
+use App\Livewire\Baytickets;
 use App\Livewire\TeatherPlaces;
 
 /*
@@ -30,6 +31,9 @@ Route::get('tickets-types', TicketsType::class)->name('tickets-types');
 
 // Clients Management
 Route::get('clients', Clients::class)->name('clients');
+
+// Bookings Management
+Route::get('bookings', Baytickets::class)->name('bookings');
 
 // Venues
 Route::get('test', TeatherPlaces::class)->name('test');

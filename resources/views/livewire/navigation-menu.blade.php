@@ -20,14 +20,61 @@
                     <x-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
                         {{ __('messages.Articles') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('shows') }}" :active="request()->routeIs('shows')">
-                        {{ __('messages.Shows') }}
-                    </x-nav-link>
+
+                    <!-- Shows Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300">
+                                    {{ __('messages.Shows') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-dropdown-link href="{{ route('shows') }}" :active="request()->routeIs('shows')">
+                                {{ __('All Shows') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('shows-types') }}" :active="request()->routeIs('shows-types')">
+                                {{ __('Show Categories') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+
+                    <!-- Tickets Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300">
+                                    {{ __('messages.Tickets') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-dropdown-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                                {{ __('All Tickets') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('tickets-types') }}" :active="request()->routeIs('tickets-types')">
+                                {{ __('Ticket Types') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+
                     <x-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
                         {{ __('messages.Clients') }}
                     </x-nav-link>
+
+                    <x-nav-link href="{{ route('bookings') }}" :active="request()->routeIs('bookings')">
+                        {{ __('messages.Bookings') }}
+                    </x-nav-link>
+
                     <x-nav-link href="{{ route('test') }}" :active="request()->routeIs('test')">
-                        {{ __('messages.Test Gui') }}
+                        {{ __('messages.Venues') }}
                     </x-nav-link>
                 </div>
             </div>

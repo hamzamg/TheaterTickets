@@ -7,10 +7,17 @@
 ## 🎯 الهدف
 
 بناء نظام متكامل لإدارة تذاكر المسرح باستخدام أحدث التقنيات مع التركيز على:
+<<<<<<< HEAD
 - تجربة مستخدم سلسة وحديثة
 - نظام صلاحيات مرن وقوي
 - أداء عالي وقابلية للتوسع
 - كود نظيف وقابل للصيانة
+=======
+- ✅ تجربة مستخدم سلسة وحديثة
+- ✅ نظام صلاحيات مرن وقوي
+- ✅ أداء عالي وقابلية للتوسع
+- ✅ كود نظيف وقابل للصيانة
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -21,10 +28,18 @@
 | **Laravel** | 12.x | Framework أساسي |
 | **PHP** | 8.5 | لغة البرمجة |
 | **Livewire** | 3.5 | واجهات تفاعلية |
+<<<<<<< HEAD
 | **Tailwind CSS** | 3.4 | التصميم |
 | **Vite** | 5.x | Build tool |
 | **MySQL** | 8.0 | قاعدة البيانات (Prod) |
 | **SQLite** | 3.x | قاعدة البيانات (Dev) |
+=======
+| **Tailwind CSS** | 4.x | التصميم |
+| **Vite** | 5.x | Build tool |
+| **MySQL** | 8.0 | قاعدة البيانات |
+| **Spatie Permission** | 6.x | نظام الصلاحيات |
+| **Simple QR Code** | 4.x | توليد QR codes |
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -43,6 +58,10 @@
 ```
 Email: admin@theater.local
 Password: ad123456
+<<<<<<< HEAD
+=======
+Role: super-admin
+>>>>>>> docs/update-main-documentation
 ```
 
 ---
@@ -85,11 +104,17 @@ Password: ad123456
 - `code_ticket` - رمز التذكرة
 - `type` - نوع التذكرة
 - `show_id` - العرض (FK)
+<<<<<<< HEAD
 - `ticket_type_id` - نوع التذكرة (FK)
 
 **العلاقات:**
 - ينتمي إلى `Show`
 - ينتمي إلى `TicketsType`
+=======
+
+**العلاقات:**
+- ينتمي إلى `Show`
+>>>>>>> docs/update-main-documentation
 - لديه عدة `Baytickets`
 
 **الوظائف:**
@@ -118,7 +143,10 @@ Password: ad123456
 **الوظائف:**
 - ✅ إدارة بيانات العملاء
 - ✅ تتبع الحجوزات
+<<<<<<< HEAD
 - ✅ سجل المشتريات
+=======
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -143,7 +171,10 @@ Password: ad123456
 - ✅ إنشاء حجز
 - ✅ توليد QR code تلقائي
 - ✅ تأكيد الحجز
+<<<<<<< HEAD
 - ✅ طباعة التذكرة
+=======
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -161,7 +192,10 @@ Password: ad123456
 **الوظائف:**
 - ✅ إدارة شبكة المقاعد
 - ✅ تتبع الحجوزات
+<<<<<<< HEAD
 - ✅ خريطة المقاعد
+=======
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -178,7 +212,10 @@ Password: ad123456
 **الوظائف:**
 - ✅ نشر الأخبار
 - ✅ إعلانات العروض
+<<<<<<< HEAD
 - ✅ دعم متعدد اللغات
+=======
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -187,13 +224,21 @@ Password: ad123456
 #### ShowsType
 **الحالة:** مكتمل ✅
 
+<<<<<<< HEAD
 - أنواع العروض (مسرحية، أوبرا، حفلة، إلخ)
+=======
+- أنواع العروض
+>>>>>>> docs/update-main-documentation
 - ربط بالعروض
 
 #### TicketsType
 **الحالة:** مكتمل ✅
 
+<<<<<<< HEAD
 - أنواع التذاكر (VIP، عادي، طالب، إلخ)
+=======
+- أنواع التذاكر
+>>>>>>> docs/update-main-documentation
 - معدلات الأسعار
 
 ---
@@ -207,13 +252,18 @@ Password: ad123456
 | الدور | الصلاحيات | الوصف |
 |-------|----------|--------|
 | **super-admin** | 26 صلاحية | صلاحيات كاملة |
+<<<<<<< HEAD
 | **admin** | 21 صلاحية | إدارة كاملة بدون حذف |
+=======
+| **admin** | 21 صلاحية | إدارة كاملة |
+>>>>>>> docs/update-main-documentation
 | **manager** | 18 صلاحية | إدارة العمليات |
 | **staff** | 11 صلاحية | العمليات الأساسية |
 | **user** | 3 صلاحيات | عرض وإنشاء حجوزات |
 
 ### الصلاحيات المتاحة:
 
+<<<<<<< HEAD
 **Shows:**
 - `view shows`, `create shows`, `edit shows`, `delete shows`
 
@@ -234,6 +284,21 @@ Password: ad123456
 
 **Users:**
 - `view users`, `create users`, `edit users`, `delete users`
+=======
+**Shows:** `view`, `create`, `edit`, `delete`
+
+**Tickets:** `view`, `create`, `edit`, `delete`
+
+**Clients:** `view`, `create`, `edit`, `delete`
+
+**Bookings:** `view`, `create`, `edit`, `delete`
+
+**Articles:** `view`, `create`, `edit`, `delete`
+
+**Settings:** `view`, `edit`
+
+**Users:** `view`, `create`, `edit`, `delete`
+>>>>>>> docs/update-main-documentation
 
 ---
 
@@ -257,7 +322,10 @@ Password: ad123456
 - [x] حماية المسارات
 
 ### 🔄 المرحلة 4: التحسينات (جاري)
+<<<<<<< HEAD
 - [ ] دمج Pull Requests
+=======
+>>>>>>> docs/update-main-documentation
 - [ ] نظام الإشعارات
 - [ ] النشر الإنتاجي
 - [ ] اختبارات شاملة
@@ -268,10 +336,17 @@ Password: ad123456
 ## 🚀 خطوات النشر
 
 ### 1. ما قبل النشر
+<<<<<<< HEAD
 - [ ] مراجعة الكود
 - [ ] اختبارات الأداء
 - [ ] فحص الأمان
 - [ ] تحديث الـ README
+=======
+- [x] مراجعة الكود
+- [ ] اختبارات الأداء
+- [ ] فحص الأمان
+- [x] تحديث الـ README
+>>>>>>> docs/update-main-documentation
 
 ### 2. النشر
 - [ ] إعداد الخادم الإنتاجي
@@ -291,13 +366,19 @@ Password: ad123456
 ### الكود:
 - ✅ PSR-12 coding standards
 - ✅ Type hints للدوال
+<<<<<<< HEAD
 - ✅ Documentations للـ classes
+=======
+>>>>>>> docs/update-main-documentation
 - ✅ Meaningful variable names
 
 ### الأداء:
 - ✅ Database indexing
 - ✅ Eager loading للعلاقات
+<<<<<<< HEAD
 - ✅ Caching للبيانات المتكررة
+=======
+>>>>>>> docs/update-main-documentation
 - ✅ Optimized queries
 
 ### الأمان:

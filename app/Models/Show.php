@@ -14,10 +14,17 @@ class Show extends Model
         'type',
         'description',
         'photo_path',
-        'active'
+        'active',
+        'show_type_id',
     ];
-    // protected $hidden = [
-    //     'created_at', 'updated_at',
-    // ];
 
+    public function showType()
+    {
+        return $this->belongsTo(ShowsType::class, 'show_type_id');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

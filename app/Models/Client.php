@@ -23,4 +23,9 @@ class Client extends Model
     // {
     //     return $this->hasMany(Tickets::class);
     // }
+
+    public function baytickets()
+    {
+        return $this->hasMany(Bayticket::class);
+    }
 }

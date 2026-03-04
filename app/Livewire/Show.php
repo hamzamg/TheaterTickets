@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Show as Model;
+use App\Models\ShowsType;
 
 
 class Show extends Component
@@ -18,7 +19,7 @@ class Show extends Component
    public $description;
    public $photo_path;
    public $active;
-
+   public $showTypeId;
 
     public $mode = 'create';
 
@@ -30,16 +31,27 @@ class Show extends Component
 
     public $showConfirmDeletePopup = false;
 
+    public $showTypes = [];
+
     protected $rules = [
 'name' => 'required',
 'type' => 'required',
 'description' => 'required',
 'photo_path' => 'required',
 'active' => 'required',
+'showTypeId' => 'nullable|exists:shows_types,id',
 
 ];
 
+    public function mount()
+    {
+        $this->loadShowTypes();
+    }
 
+    protected function loadShowTypes()
+    {
+        $this->showTypes = ShowsType::where('active', true)->orderBy('type')->get();
+    }
 
     public function updated($propertyName)
     {
@@ -53,7 +65,7 @@ class Show extends Component
 
     public function render()
     {
-        $model = Model::where('name', 'like', '%'.$this->search.'%')->orWhere('type', 'like', '%'.$this->search.'%')->orWhere('description', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('active', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
+        $model = Model::with('showType')->where('name', 'like', '%'.$this->search.'%')->orWhere('type', 'like', '%'.$this->search.'%')->orWhere('description', 'like', '%'.$this->search.'%')->orWhere('photo_path', 'like', '%'.$this->search.'%')->orWhere('active', 'like', '%'.$this->search.'%')->latest()->paginate($this->paginate);
         return view('livewire.show', [
             'rows'=> $model
         ]);
@@ -79,8 +91,7 @@ $this->type= $model->type;
 $this->description= $model->description;
 $this->photo_path= $model->photo_path;
 $this->active= $model->active;
-
-
+$this->showTypeId = $model->show_type_id;
 
         $this->showForm = true;
     }
@@ -101,6 +112,7 @@ $model->type= $this->type;
 $model->description= $this->description;
 $model->photo_path= $this->photo_path;
 $model->active= $this->active;
+$model->show_type_id = $this->showTypeId;
  $model->save();
 
           $this->resetForm();
@@ -115,6 +127,7 @@ $this->type= "";
 $this->description= "";
 $this->photo_path= "";
 $this->active= "";
+$this->showTypeId = null;
 
     }
 
@@ -130,6 +143,7 @@ $model->type= $this->type;
 $model->description= $this->description;
 $model->photo_path= $this->photo_path;
 $model->active= $this->active;
+$model->show_type_id = $this->showTypeId;
  $model->save();
 
           $this->resetForm();

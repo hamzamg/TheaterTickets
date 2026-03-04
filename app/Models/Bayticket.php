@@ -13,8 +13,28 @@ class Bayticket extends Model
         'client_id',
         'show_id',
         'ticket_id',
-        'qrcode'
+        'quantity',
+        'qrcode',
+        'notes'
     ];
 
+    protected $casts = [
+        'quantity' => 'integer',
+    ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function show()
+    {
+        return $this->belongsTo(Show::class);
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 
 }

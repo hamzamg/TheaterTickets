@@ -16,8 +16,7 @@ class Bayticket extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'quantity' => 'integer',
     ];
 
     public function client()

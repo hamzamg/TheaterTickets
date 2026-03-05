@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Livewire\Article;
-use App\Livewire\Show;
+use App\Livewire\Shows;
 use App\Livewire\Tickets;
 use App\Livewire\Clients;
 use App\Livewire\Bookings;
@@ -37,7 +37,7 @@ Route::middleware([
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     
     // Shows Management
-    Route::get('shows', Show::class)->name('shows');
+    Route::get('shows', Shows::class)->name('shows');
     Route::get('shows-types', ShowsTypes::class)->name('shows-types');
     
     // Tickets Management
